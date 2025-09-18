@@ -6,7 +6,8 @@ namespace Baray_Bolat_DiceGame
     {
         static void Main(string[] args)
         {
-            GameMenager.ProgramStart();
+           GameMenager menager = new GameMenager();
+            GameMenager.Playgame();
         }
     }
 }
