@@ -7,8 +7,8 @@ namespace Baray_Bolat_DiceGame
         static void Main(string[] args)
         {
             //created an instance to call the gamemenager to program
-           GameMenager menager = new GameMenager(); //constuctor
-            menager.Playgame();
+           GameManager Manager = new GameManager(); //constuctor
+            Manager.Playgame();
         }
     }
 }

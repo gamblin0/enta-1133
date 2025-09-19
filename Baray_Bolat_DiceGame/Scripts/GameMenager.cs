@@ -40,9 +40,9 @@ namespace Baray_Bolat_DiceGame.Scripts
     }
     
     
-    internal class operators //created a class to explain the operators
+    internal class Operators //created a class to explain the operators
     {
-        internal void arihmetics()
+        internal void Arihmetics()
         {
             int first = 16;
             int second = 4;
@@ -107,7 +107,7 @@ namespace Baray_Bolat_DiceGame.Scripts
     
     
     
-    internal class GameMenager
+    internal class GameManager
     {
         //created a function to play the game
         internal void Playgame()
@@ -115,7 +115,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             //welcome message
             Console.WriteLine("Welcome player, it's Baray and today's date is 2025-09-17!");
 
-            //created an instance to call Dieroller class to GameMenager class
+            //created an instance to call Dieroller class to GameManager class
               DieRoller DieRollerInstance = new DieRoller();
 
             //activated Rolling function that was inside the DieRoller class
@@ -124,9 +124,9 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine("");
             Console.WriteLine("");
 
-              operators OperatorInstance = new operators(); //called the operators class with the instance
+              Operators OperatorInstance = new Operators(); //called the operatorss class with the instance
 
-                OperatorInstance.arihmetics();
+                OperatorInstance.Arihmetics();
 
             Console.WriteLine("");
 
