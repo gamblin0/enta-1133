@@ -40,7 +40,7 @@ namespace Baray_Bolat_DiceGame.Scripts
     }
     
     
-    internal class operators
+    internal class operators //created a class to explain the operators
     {
         internal void arihmetics()
         {
@@ -124,7 +124,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine("");
             Console.WriteLine("");
 
-              operators OperatorInstance = new operators();
+              operators OperatorInstance = new operators(); //called the operators class with the instance
 
                 OperatorInstance.arihmetics();
 
