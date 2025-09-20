@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36401.2 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Baray_Bolat_DiceGame", "Baray_Bolat_DiceGame.csproj", "{9DB46173-7E85-4AE0-B9DE-A5678FCFBF09}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DB46173-7E85-4AE0-B9DE-A5678FCFBF09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB46173-7E85-4AE0-B9DE-A5678FCFBF09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB46173-7E85-4AE0-B9DE-A5678FCFBF09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB46173-7E85-4AE0-B9DE-A5678FCFBF09}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ED074E57-C851-410A-BC69-EBA1CFE8DE04}
+	EndGlobalSection
+EndGlobal
