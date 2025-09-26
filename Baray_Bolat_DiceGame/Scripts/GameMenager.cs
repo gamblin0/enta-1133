@@ -203,6 +203,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                         Console.WriteLine("You rolled " + pd20 + " !");
                     }
 
+                    Console.WriteLine("It's your opponent's turn!");
+
 
                 }
                 else
@@ -213,13 +215,44 @@ namespace Baray_Bolat_DiceGame.Scripts
             else
             {
                 Random random = new Random();
-                int cd6 = random.Next(1, 7);
-                int cd8 = random.Next(1, 9);
-                int cd12 = random.Next(1, 13);
-                int cd20 = random.Next(1, 21);
+   
+                Random randomPick = new Random();
 
-                Random picker = new Random(); 
+                int picker = randomPick.Next(1, 5);
 
+                if (picker == 1)
+                {
+                    int cd6 = random.Next(1, 7);
+                    Console.WriteLine("Opponent is rolling a d6");
+                    Console.WriteLine("Opponent rolled " + cd6 + " !");
+                }
+
+                if (picker == 2)
+                {
+                    int cd8 = random.Next(1, 9);
+                    Console.WriteLine("Opponent is rolling a d8");
+                    Console.WriteLine("Opponent rolled " + cd8 + " !");
+                }
+
+                if (picker == 3)
+                {
+                    int cd12 = random.Next(1, 13);
+                    Console.WriteLine("Opponent is rolling a d12");
+                    Console.WriteLine("Opponent rolled " + cd12 + " !");
+                }
+
+                if (picker == 4)
+                {
+                    int cd20 = random.Next(1, 21);
+                    Console.WriteLine("Opponent is rolling a d20");
+                    Console.WriteLine("Opponent rolled " + cd20 + " !");
+                }
+
+
+
+
+
+                
 
 
             }
