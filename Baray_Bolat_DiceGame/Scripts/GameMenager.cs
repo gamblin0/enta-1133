@@ -22,122 +22,122 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
         }
-        
+
     }
 
 
 
-  
-       
-    
+
+
+
 
     //internal class TurnDecider
-   // {
-     //   internal
-   // }
+    // {
+    //   internal
+    // }
 
 
 
 
-   internal class DieRoller
+    internal class DieRoller
     {
         Random random = new Random();
 
         internal void Rolling()
         {
-            int d6 = random.Next(1, 7); //created random number generator for d6
+            //int d6 = random.Next(1, 7); //created random number generator for d6
             int d8 = random.Next(1, 9); //created random number generator for d8
             int d12 = random.Next(1, 13); //created random number generator for d12
             int d20 = random.Next(1, 21); //created random number generator for d20
-            //int total = d6 + d8 + d12 + d20; //created total to write the sum of the outcomes
+                                          //int total = d6 + d8 + d12 + d20; //created total to write the sum of the outcomes
 
             //printing each roll outcome
-             // Console.WriteLine("Your d6 rolled " + d6 + "!");
-            
-
-             // Console.WriteLine("Your d8 rolled " + d8 + "!");
+            // Console.WriteLine("Your d6 rolled " + d6 + "!");
 
 
-             // Console.WriteLine("Your d12 rolled " + d12 + "!");
+            // Console.WriteLine("Your d8 rolled " + d8 + "!");
 
 
-             // Console.WriteLine("Your d20 rolled " + d20 + "!");
+            // Console.WriteLine("Your d12 rolled " + d12 + "!");
+
+
+            // Console.WriteLine("Your d20 rolled " + d20 + "!");
 
             //printing the total outcome
             //  Console.WriteLine("Your total point is " + total + "!");
-            
+
         }
-        
-        
+
+
     }
-    
-    
+
+
     //internal class Operators //created a class to explain the operators
     //{
-       // internal void Arihmetics()
-       // {
-            //int first = 16;
-            //int second = 4;
+    // internal void Arihmetics()
+    // {
+    //int first = 16;
+    //int second = 4;
 
-             // Console.WriteLine("Hi again, this is to explain how arithmetic operators work! Our first number is 16 and the second one is 4!");
-              //Console.WriteLine("Our first number is 16 and the second one is 4!");
+    // Console.WriteLine("Hi again, this is to explain how arithmetic operators work! Our first number is 16 and the second one is 4!");
+    //Console.WriteLine("Our first number is 16 and the second one is 4!");
 
-              //Console.WriteLine("");
-
-    
-              //Console.WriteLine(++first); //added 1 to the first number so until next usage, it will stay 17
-
-              //Console.WriteLine("We used '++' to add 1 to our first number");
-
-              //Console.WriteLine(""); //used this for space throughout the code
+    //Console.WriteLine("");
 
 
-              //Console.WriteLine(--first); //after subtracting 1 from the first number, it goes back to 16 so we can use it as 16 from now on
+    //Console.WriteLine(++first); //added 1 to the first number so until next usage, it will stay 17
 
-              //Console.WriteLine("Then we used '--' to subtract 1 from our first number after we added 1 before that");
+    //Console.WriteLine("We used '++' to add 1 to our first number");
 
-              //Console.WriteLine("");
-
-
-             // Console.WriteLine(first + second); //added both numbers with +
-
-             // Console.WriteLine("We added both of our numbers to eachother using '+' (16 + 4 = 20)");
-
-             // Console.WriteLine("");
+    //Console.WriteLine(""); //used this for space throughout the code
 
 
-             // Console.WriteLine(first - second); //subtracted both numbers with -
+    //Console.WriteLine(--first); //after subtracting 1 from the first number, it goes back to 16 so we can use it as 16 from now on
 
-             // Console.WriteLine("We subtracted secon number from the firts one using '-' (16 - 4 = 12)");
-             // Console.WriteLine("");
+    //Console.WriteLine("Then we used '--' to subtract 1 from our first number after we added 1 before that");
 
-
-              //Console.WriteLine(first * second); //multiplied numbers with *
-
-             // Console.WriteLine("We multiplied our nubers using '*' (16 x 4 = 64)");
-
-             // Console.WriteLine("");
-
-    
-             // Console.WriteLine(first / second); //divided numbers wiht /
-
-             // Console.WriteLine("We divided our first number with the second one using '/' (16 / 4 = 4)");
-
-             // Console.WriteLine("");
+    //Console.WriteLine("");
 
 
-             // Console.WriteLine(first % second); //used remainder with %
+    // Console.WriteLine(first + second); //added both numbers with +
 
-             // Console.WriteLine("We used remainder with '%' (16 - (16 / 4) x 4 = 0)");
+    // Console.WriteLine("We added both of our numbers to eachother using '+' (16 + 4 = 20)");
+
+    // Console.WriteLine("");
 
 
-       // }
-   // }
-    
-    
-    
-    
-    
+    // Console.WriteLine(first - second); //subtracted both numbers with -
+
+    // Console.WriteLine("We subtracted secon number from the firts one using '-' (16 - 4 = 12)");
+    // Console.WriteLine("");
+
+
+    //Console.WriteLine(first * second); //multiplied numbers with *
+
+    // Console.WriteLine("We multiplied our nubers using '*' (16 x 4 = 64)");
+
+    // Console.WriteLine("");
+
+
+    // Console.WriteLine(first / second); //divided numbers wiht /
+
+    // Console.WriteLine("We divided our first number with the second one using '/' (16 / 4 = 4)");
+
+    // Console.WriteLine("");
+
+
+    // Console.WriteLine(first % second); //used remainder with %
+
+    // Console.WriteLine("We used remainder with '%' (16 - (16 / 4) x 4 = 0)");
+
+
+    // }
+    // }
+
+
+
+
+
     internal class GameManager
     {
 
@@ -158,7 +158,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             Player user = new Player();
 
-            Player cpu = new Player();  
+            Player cpu = new Player();
 
             Random turnOrder = new Random();
 
@@ -166,36 +166,82 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             bool playerTurn = coinFlip > 0;
 
+            user.GetPlayerName();
+
             if (playerTurn)
             {
-                Console.WriteLine("Which die do you want to roll? (write d6, d8, d12 or d20 to pick the dice)");
+                Console.WriteLine("Which die do you want to roll? (write 6, 8, 12 or 20 to pick the dice.)");
+
+                if (int.TryParse(Console.ReadLine(), out int number))
+                {
+                    
+                    if (number == 6)
+                    {
+                        Random random = new Random();
+                         int pd6= random.Next(1,7); //named pd6 for player d6
+                        Console.WriteLine("You rolled " + pd6 + " !");
+                    }
+
+                    if (number == 8)
+                    {
+                        Random random = new Random();
+                        int pd8 = random.Next(1, 9); //named pd8 for player d8
+                        Console.WriteLine("You rolled " + pd8 + " !");
+                    }
+
+                    if (number == 12)
+                    {
+                        Random random = new Random();
+                        int pd12 = random.Next(1, 13); //named pd12 for player d12
+                        Console.WriteLine("You rolled " + pd12 + " !");
+                    }
+
+                    if (number == 20)
+                    {
+                        Random random = new Random();
+                        int pd20 = random.Next(1, 21); //named pd20 for player d20
+                        Console.WriteLine("You rolled " + pd20 + " !");
+                    }
 
 
-
-                // get input on which dice the user wants to roll
+                }
+                else
+                {
+                    Console.WriteLine("Please enter 6, 8, 12 or 20.");
+                }
             }
             else
             {
-                Console.WriteLine("cpu rolls");
-                // cpu rolls dice
+                Random random = new Random();
+                int cd6 = random.Next(1, 7);
+                int cd8 = random.Next(1, 9);
+                int cd12 = random.Next(1, 13);
+                int cd20 = random.Next(1, 21);
+
+                Random picker = new Random(); 
+
+
+
             }
 
 
 
-            user.GetPlayerName();
+
+
 
             //created an instance to call Dieroller class to GameManager class
-              DieRoller DieRollerInstance = new DieRoller();
+            DieRoller DieRollerInstance = new DieRoller();
 
-            //activated Rolling function that was inside the DieRoller class
+                //activated Rolling function that was inside the DieRoller class
                 DieRollerInstance.Rolling();
 
-            Console.WriteLine("");
-            Console.WriteLine("");
+                Console.WriteLine("");
+                Console.WriteLine("");
 
-              
+
+
+            }
 
         }
-
     }
-}
+
