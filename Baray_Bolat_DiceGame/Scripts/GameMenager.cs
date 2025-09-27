@@ -148,6 +148,15 @@ namespace Baray_Bolat_DiceGame.Scripts
                         cpuOutcome += cd20;  //the outcome is the roll that was made and this will be used to compare
                     }
 
+                    if (playerOutcome > cpuOutcome)
+                    {
+                        playerScore++; // if player's role is bigger than cpu's role, player gets a point
+
+                    }
+                    else if (playerOutcome < cpuOutcome)
+                    {
+                        cpuScore++; // if cpu's role is bigger than player's role, player gets a point
+                    }
 
                 }
                 else
@@ -251,20 +260,21 @@ namespace Baray_Bolat_DiceGame.Scripts
 
                 }
 
-                
+                if (playerOutcome > cpuOutcome)
+                {
+                    playerScore++; // if player's role is bigger than cpu's role, player gets a point
+
+                }
+                else if (playerOutcome < cpuOutcome)
+                {
+                    cpuScore++; // if cpu's role is bigger than player's role, player gets a point
+                }
 
 
             }
 
-            if (playerOutcome > cpuOutcome)
-            {
-                playerScore++; // if player's role is bigger than cpu's role, player gets a point
-
-            }
-            else if (playerOutcome < cpuOutcome)
-            {
-                cpuScore++; // if cpu's role is bigger than player's role, player gets a point
-            }
+            
+            
 
             Console.WriteLine("Here are the results:");
 
