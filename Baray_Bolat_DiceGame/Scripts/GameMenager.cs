@@ -56,13 +56,17 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             user.GetPlayerName();
 
+            Console.WriteLine("Flipping a coin to decide who goes first...");
+
             if (playerTurn)
             {
+                Console.WriteLine("You won the coin flip");
                 //here, is when it is player's turn first. Player is asked to roll and then the cpu rolls. There is most probably a better way to do it with functions but I couldn't make it work when I tried. Might need help with that.
                 Console.WriteLine("Which die do you want to roll? (write 6, 8, 12 or 20 to pick the dice.)");
 
                 if (int.TryParse(Console.ReadLine(), out int number))
                 {
+                    
 
                     if (number == 6)
                     {
@@ -171,6 +175,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
                 int picker = randomPick.Next(1, 5);
 
+                Console.WriteLine("Your opponent won the coin flip");
 
 
                 if (picker == 1)
