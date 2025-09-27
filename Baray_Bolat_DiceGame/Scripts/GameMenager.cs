@@ -30,8 +30,6 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-
-
     internal class Die
     {
 
@@ -290,23 +288,33 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-        internal class GameMenager
+       
+
+
+
+            
+
+        }
+
+
+
+    internal class GameMenager
+    {
+
+
+
+
+
+
+
+
+        //created a function to play the game
+        internal void Playgame()
         {
 
 
-
-
-
-
-
-
-            //created a function to play the game
-            internal void Playgame()
-            {
-
-
-                //welcome message
-                Console.WriteLine("Welcome player, it's Baray and today's date is 2025-09-25.");
+            //welcome message
+            Console.WriteLine("Welcome player, it's Baray and today's date is 2025-09-25.");
 
 
 
@@ -315,21 +323,16 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-                //created an instance to call Dieroller class to GameManager class
-                Die DieRollerInstance = new Die();
+            //created an instance to call Dieroller class to GameManager class
+            Die DieRollerInstance = new Die();
 
-                //activated Rolling function that was inside the DieRoller class
-                DieRollerInstance.Rolling();
+            //activated Rolling function that was inside the DieRoller class
+            DieRollerInstance.Rolling();
 
-                Console.WriteLine("");
-                Console.WriteLine("");
+            Console.WriteLine("");
+            Console.WriteLine("");
 
-                Console.WriteLine("Thank you for playing!");
-
-
-
-            }
-
+            Console.WriteLine("Thank you for playing!");
         }
     }
 }
