@@ -10,6 +10,7 @@ namespace Baray_Bolat_DiceGame.Scripts
     {
         public string PlayerName;
         public int Score = 0;
+        public bool IsPlayer;
 
         public void Askname()
         {
@@ -17,17 +18,19 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine(asknameMessage);
             PlayerName = Console.ReadLine();
             Console.WriteLine();
+            IsPlayer = true;
         }
 
 
         public void SetName()
         {
             PlayerName = "cpu";
+            IsPlayer = false;
         }
 
         public void Playerone()
         {
-            DiceRoller roller = new DiceRoller;
+            DiceRoller roller = new DiceRoller();
         }
     }
 }
