@@ -30,7 +30,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public void Playerone()
         {
-            DiceRoller roller = new DiceRoller();
+           
         }
     }
 }
