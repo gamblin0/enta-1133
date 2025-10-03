@@ -96,8 +96,7 @@ namespace Baray_Bolat_DiceGame.Scripts
         {
 
 
-            //currentTurn.ShowDice();
-            //currentTurn.PickDice();
+            Console.WriteLine("Player's turn");
 
 
 
