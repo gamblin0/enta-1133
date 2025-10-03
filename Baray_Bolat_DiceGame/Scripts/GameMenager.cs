@@ -28,6 +28,8 @@ namespace Baray_Bolat_DiceGame.Scripts
             Player user = new Player();
             Player cpu = new Player();
             Random r = new Random();
+            DiceRoller roller = new DiceRoller();
+            roller.SetupDice();
 
             user.Askname();
             cpu.SetName();
@@ -42,11 +44,11 @@ namespace Baray_Bolat_DiceGame.Scripts
                 currentTurn = cpu;
 
 
-            bool playingGame = true;
+            bool playingGame = false;
 
             while (playingGame)
             {
-                int firstPlayerRoll = TurnLoop(currentTurn);
+                //int firstPlayerRoll = TurnLoop(currentTurn);
 
                 if (currentTurn == user)
 
@@ -54,10 +56,10 @@ namespace Baray_Bolat_DiceGame.Scripts
 
                 else currentTurn = user;
 
-                int secondPayerRoll = TurnLoop(currentTurn);
+                //int secondPayerRoll = TurnLoop(currentTurn);
 
 
-                CompareTurns(firstPlayerRoll,secondPayerRoll);
+                //CompareTurns(firstPlayerRoll,secondPayerRoll);
             }
         }
 
@@ -86,16 +88,16 @@ namespace Baray_Bolat_DiceGame.Scripts
 
           
 
-        DiceRoller roller = new DiceRoller();
-        roller.AskPlayerForDiceInput();
+        //DiceRoller roller = new DiceRoller();
+       // roller.AskPlayerForDiceInput();
 
 
-        public int TurnLoop(Player currentTurn)
+        public void TurnLoop(Player currentTurn)
         {
 
 
-            currentTurn.ShowDice();
-            currentTurn.PickDice();
+            //currentTurn.ShowDice();
+            //currentTurn.PickDice();
 
 
 

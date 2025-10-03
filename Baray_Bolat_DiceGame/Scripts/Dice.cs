@@ -8,7 +8,22 @@ namespace Baray_Bolat_DiceGame.Scripts
 {
     internal class DiceRoller
     {
-        public void Roller()
+
+        private Die[] allDiceTypes;
+        private int[] diceSizes = new int[] {4,6,8,12,20};
+
+        public void SetupDice() // set up dice once when the game starts or any time the dice change
+        {
+            allDiceTypes = new Die[diceSizes.Length];
+            for(int i = 0; i < allDiceTypes.Length; i++)
+            {
+                allDiceTypes[i] = new Die();
+                allDiceTypes[i].SetDiceMaxValue(diceSizes[i]);
+            }
+        }
+        
+            
+      public void Roller()
         {
             Player user = new Player();
 
@@ -28,7 +43,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             bool playerTurn = coinFlip > 0; // if the coinflip is 1 it is player's turn and I use this in the next if to make it player's tirn first
 
-            user.GetPlayerName();
+            
 
             Console.WriteLine("Flipping a coin to decide who goes first...");
 
@@ -262,15 +277,54 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
+        public void RollAndScore(Player currentTurn)
+        {
+            int toRoll = GetRollForPlayer(currentTurn);
+            
+
+        }
+
+        private int GetRollForPlayer(Player currentTurn)
+        {
+            if (currentTurn.IsPlayer) //checking if it is player's roll
+            {
+                return GetUserInputForDiceRoll();
+            }
+            else
+            {
+                return GetCpuInputForDiceRoll();
+            }
+        }
+
+
+        private int GetUserInputForDiceRoll()
+        {
+            return 0; //get the number that was written
+        }
+
+        private int GetCpuInputForDiceRoll()
+        {
+            return 0; //get the random number
+        }
 
 
 
 
+        public class Die()
+        {
+            public int minRoll = 1;
+            public int maxRollInclusive = 4; //made the default max roll 4
 
+            public void SetDiceMaxValue(int maxInclusive) //setting the max value for the dice
+            {
+                maxRollInclusive = maxInclusive;
+            }
 
-
-
-
+            public int Roll(Random r)
+            {
+                return r.Next(minRoll, maxRollInclusive + 1);
+            }
+        }
 
 
     }
