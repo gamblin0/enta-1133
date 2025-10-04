@@ -14,44 +14,45 @@ namespace Baray_Bolat_DiceGame.Scripts
 
     internal class GameMenager
     {
-        Player user = new Player();
+        Player user = new Player();//called player to get user
 
-        Player cpu = new Player();
+        Player cpu = new Player();//called player to get cpu
 
-        bool playerTurn;
+        bool playerTurn;//is it player turn? yes or no
 
-        int playerOutcome;
+        int playerOutcome;//player roll
 
-        int cpuOutcome;
+        int cpuOutcome;//cpu roll
 
-        bool playingGame;
+        bool playingGame;//is the game still going? yes or no
 
         
 
-        List<int> playerDice = new List<int>
+        List<int> playerDice = new List<int>//dice list of player
         {
             6, 8, 12, 20
         };
         
 
-        List<int> cpuDice = new List<int>
+        List<int> cpuDice = new List<int>//dice list of cpu
         {
             0,1, 2, 3
         };
     
 
-        public void GameChecker()
+        public void GameChecker()//checks the lists to see if the game should continue
         {
-            if(playerDice.Count == 0 && cpuDice.Count == 0)
+            if(playerDice.Count == 0 && cpuDice.Count == 0)//if there is not any dice left in both of the lists
             {
                
-                playingGame = false;
-                GameWinner();
-                GoodbyeMessage();
+                playingGame = false;//ends the game
+                GameWinner();//game winner message
+                GoodbyeMessage();//goodbye message
+                Again();
             }
             else
             {
-                playingGame = true; 
+                playingGame = true; //game continues
             }
 
            
@@ -59,7 +60,7 @@ namespace Baray_Bolat_DiceGame.Scripts
         }
 
 
-        public void GoodbyeMessage()
+        public void GoodbyeMessage()//goodbye message for when the game ends
         {
             Console.WriteLine("GAME OVER");
             Console.WriteLine("Thank you for playing!");
@@ -68,17 +69,17 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-        public int CoinFlip()
+        public int CoinFlip()//coin flip to decide the turn order
         {
-            Random turnOrder = new Random();
+            Random turnOrder = new Random();//randomizer
 
-            int coinFlip = turnOrder.Next(2);
+            int coinFlip = turnOrder.Next(2);//random outcome out of 1 or 0
 
-            playerTurn = coinFlip > 0;
+            playerTurn = coinFlip > 0;//if the random outcome is 1 then it is player's turn
 
             Console.WriteLine("Flipping a coin to decide who goes first...");
 
-            return coinFlip;
+            return coinFlip;//returning so I can use it later
         }
 
 
@@ -90,50 +91,50 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-            Player user = new Player();
-            Player cpu = new Player();
-            Random r = new Random();
-            DiceRoller roller = new DiceRoller();
+            Player user = new Player();//introduce user to make a new player
+            Player cpu = new Player();//introduce cpu  to make a new player
+            Random r = new Random();//introduce r random  to make a new random
+            DiceRoller roller = new DiceRoller();//introduce roller to make a new DiceRoller
            
 
-            user.Askname();
-            cpu.SetName();
-            Rules();
+            user.Askname();//calls Askname and asks name for player
+            cpu.SetName();//calls SetName andsets name for cpu
+            Rules();//calls rules function
             
 
-            Ready();
+            Ready();//calls Ready function
 
-            CoinFlip();
+            CoinFlip();//calls CoinFlip function
 
 
-            GameChecker();
+            GameChecker();//calls GameChecker function
 
 
 
             do
             {
                 
-                TurnLoop();
-                //gain();
+                TurnLoop();//calls The turn loop
+                
                 
 
-            } while (playingGame);
+            } while (playingGame);//plays the turn while playingGame is true
 
            
 
         }
-        public void Again()
+        public void Again()//asking if the player wants to play again
         {
             Console.WriteLine("Do you want to play again?");
             string continueInputAgain = Console.ReadLine();
 
-            if (continueInputAgain == "y")
+            if (continueInputAgain == "y")//if they say yes (y) then the game restarts
             {
                 Console.WriteLine("Let's roll!!");
-                TurnLoop();
+                Playgame();
 
             }
-            else if (continueInputAgain == "n")
+            else if (continueInputAgain == "n")//if they say no (n) then I print a small goodbye message and ends the game
             {
                 Console.WriteLine("Well, see you another time!");
                 playingGame = false;
@@ -142,44 +143,27 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         }
 
-        private void CompareTurns(Player firstPlayer, int firstPlayerRoll, Player secondPlayer, int secondPlayerRoll)
-        {
-            if (firstPlayerRoll > secondPlayerRoll)
-            {
-                Console.WriteLine(firstPlayer.PlayerName + " wins this round!");
-                firstPlayer.Score++;
-            }
-            else if (firstPlayerRoll < secondPlayerRoll)
-            {
-                Console.WriteLine(secondPlayer.PlayerName + " wins this round!");
-                secondPlayer.Score++;
-            }
-            else
-            {
-                Console.WriteLine("It's a tie!");
-                Console.WriteLine("No points this round.");
-            }
-        }
+        
 
-        public void Ready()
+        public void Ready()//asks the player if they are ready
         {
             Console.WriteLine("Are you ready?");
             Console.WriteLine("Type 'y' for yes and 'n' for no");
-            string continueInput = Console.ReadLine();
+            string continueInput = Console.ReadLine();//gets input
 
-            if (continueInput == "y")
+            if (continueInput == "y")//if they are ready we print this
             {
                 Console.WriteLine("Let's roll!!");
                 
             }
-            else if (continueInput == "n")
+            else if (continueInput == "n")//even if they are not ready the game starts
             {
                 Console.WriteLine("Well, you better be because the game is starting!");
                 
             }
         }
 
-        public void ContinuePlaying()
+        public void ContinuePlaying()//asking if they want to keep playing or leave the game
         {
            
 
@@ -187,17 +171,17 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine("Type 'y' for yes and 'n' for no");
             string continueInput = Console.ReadLine();
 
-            if (continueInput == "y")
+            if (continueInput == "y")//if they want to play, the game continues
             {
                 
                 TurnLoop();
             }
-            else if (continueInput == "n")
+            else if (continueInput == "n")//if they dont want to play the game ends
             {
                 Console.WriteLine("Thanks for playing!");
                 playingGame = false;    
             }
-            else
+            else//if they didnt write a correct input, we ask again
             {
                 Console.WriteLine("Please type y/n");
                 ContinuePlaying();  
@@ -225,7 +209,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine("GOOD LUCK!");
             Console.WriteLine("");
             Console.WriteLine("###############################################################################################");
-        }
+        }//explains he rules
 
         public void CpuTurn()
         {
@@ -239,23 +223,25 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             Random randomPick = new Random();
 
-            int picker = randomPick.Next(1, 5);
+            int picker = randomPick.Next(1, 5);//picks random dice from 1 to 4
 
 
 
             if (picker == 1)
             {
-                if (cpuDice.Contains(0))
+                if (cpuDice.Contains(0))//checks if the dice is still in the list
                 {
-                    cpuOutcome = dice.Roller(6);
-                    cpuDice.Remove(0);
+                    cpuOutcome = dice.Roller(6);//if the dice is available it rolls
+                    cpuDice.Remove(0);//removes rolled dice
 
+                    Console.WriteLine("");
                     Console.WriteLine("Opponent is rolling a d6");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
                 }
                 else
                 {
-                    CpuTurn();
+                    CpuTurn();//if the die is already used, asks for a new die
                 }
 
                     
@@ -263,49 +249,55 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             if (picker == 2)
             {
-                if (cpuDice.Contains(1))
+                if (cpuDice.Contains(1))//checks if the dice is still in the list
                 {
-                    cpuOutcome = dice.Roller(8);
-                    cpuDice.Remove(1);
+                    cpuOutcome = dice.Roller(8);//if the dice is available it rolls
+                    cpuDice.Remove(1);//removes rolled dice
 
+                    Console.WriteLine("");
                     Console.WriteLine("Opponent is rolling a d8");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
                 }
                 else
                 {
-                    CpuTurn();
+                    CpuTurn();//if the die is already used, asks for a new die
                 }
             }
 
             if (picker == 3)
             {
-                if (cpuDice.Contains(2))
+                if (cpuDice.Contains(2))//checks if the dice is still in the list
                 {
-                    cpuOutcome = dice.Roller(12);
-                    cpuDice.Remove(2);
+                    cpuOutcome = dice.Roller(12);//if the dice is available it rolls
+                    cpuDice.Remove(2);//removes rolled dice
 
+                    Console.WriteLine("");
                     Console.WriteLine("Opponent is rolling a d12");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
                 }
                 else
                 {
-                    CpuTurn();
+                    CpuTurn();//if the die is already used, asks for a new die
                 }
             }
 
             if (picker == 4)
             {
-                if (cpuDice.Contains(3))
+                if (cpuDice.Contains(3))//checks if the dice is still in the list
                 {
-                    cpuOutcome = dice.Roller(20);
-                    cpuDice.Remove(3);
+                    cpuOutcome = dice.Roller(20);//if the dice is available it rolls
+                    cpuDice.Remove(3);//removes rolled dice
 
+                    Console.WriteLine("");
                     Console.WriteLine("Opponent is rolling a d20");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
                 }
                 else
                 {
-                    CpuTurn();
+                    CpuTurn();//if the die is already used, asks for a new die
                 }
             }
 
@@ -330,18 +322,19 @@ namespace Baray_Bolat_DiceGame.Scripts
 
                     if (number == 6)
                     {
-                    if (playerDice.Contains(6))
+                    if (playerDice.Contains(6))//checks if the dice is still in the list
                     {
-                        playerOutcome = dice.Roller(6);
-                        playerDice.Remove(6);
+                        playerOutcome = dice.Roller(6); //if the dice is available it rolls
+                        playerDice.Remove(6);//removes rolled dice
 
-
+                        Console.WriteLine("");
                         Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
                     }
                     else
                     {
                         Console.WriteLine("Please pick a different die");
-                        PlayerTurn();
+                        PlayerTurn();//if the die is already used, asks for a new die
                     }
 
                     }
@@ -349,53 +342,56 @@ namespace Baray_Bolat_DiceGame.Scripts
                     if (number == 8)
                     {
 
-                    if (playerDice.Contains(8))
+                    if (playerDice.Contains(8))//checks if the dice is still in the list
                     {
-                        playerOutcome = dice.Roller(8);
-                        playerDice.Remove(8);
+                        playerOutcome = dice.Roller(8); //if the dice is available it rolls
+                        playerDice.Remove(8);//removes rolled dice
 
-
+                        Console.WriteLine("");
                         Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
                     }
                     else
                     {
                         Console.WriteLine("Please pick a different die");
-                        PlayerTurn();
+                        PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
 
                     if (number == 12)
                 {
-                    if (playerDice.Contains(12))
+                    if (playerDice.Contains(12))//checks if the dice is still in the list
                     {
-                        playerOutcome = dice.Roller(12);
-                        playerDice.Remove(12);
+                        playerOutcome = dice.Roller(12);//if the dice is available it rolls
+                        playerDice.Remove(12);//removes rolled dice
 
-
+                        Console.WriteLine("");
                         Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
                     }
                     else
                     {
                         Console.WriteLine("Please pick a different die");
-                        PlayerTurn();
+                        PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
 
                     if (number == 20)
                     {
 
-                    if (playerDice.Contains(20))
+                    if (playerDice.Contains(20))//checks if the dice is still in the list
                     {
-                        playerOutcome = dice.Roller(20);
-                        playerDice.Remove(20);
+                        playerOutcome = dice.Roller(20);//if the dice is available it rolls
+                        playerDice.Remove(20);//removes rolled dice
 
-
+                        Console.WriteLine("");
                         Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
                     }
                     else
                     {
                         Console.WriteLine("Please pick a different die");
-                        PlayerTurn();
+                        PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
 
@@ -405,8 +401,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                 else
                 {
                     Console.WriteLine("Please enter 6, 8, 12 or 20.");
-                    PlayerTurn();   
-                }
+                    PlayerTurn();   //if the they enter anything else than wanted input, it asks them to put a valid input
+            }
             
         }//the whole loopable player turn
         public void TurnLoop()
@@ -422,13 +418,13 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-            if (playerTurn)
+            if (playerTurn)//player turn
             {
                 Console.WriteLine("It's your turn!");
                 PlayerTurn();
                 CpuTurn();
             }
-            else
+            else//cpu turn
             {
                 Console.WriteLine("It's your opponent's turn!");
                 CpuTurn();
@@ -437,19 +433,19 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-            ScoreCheck();
+            ScoreCheck();//calls score checker
 
             if (playingGame = true)
             {
-                ContinuePlaying();
+                ContinuePlaying();//if there is still dice the game continues
             }
             else
             {
-                Again();
+                Again();//if the game is over, it asks if you want to play again
             }
         }
 
-        public void GameWinner()
+        public void GameWinner()//shows the winner
         {
             if (user.Score > cpu.Score)
             {
@@ -457,11 +453,11 @@ namespace Baray_Bolat_DiceGame.Scripts
 
                 Console.WriteLine("###############################################################################################");
                 Console.WriteLine("THE WINNER IS");
-                Console.WriteLine(user.FetchPlayerName());
+                Console.WriteLine(user.FetchPlayerName());//player name
                 Console.WriteLine("");
                 Console.WriteLine("-----------------------------------------------------------------------------------------------");
                 Console.WriteLine("Here are the final scores:");
-                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);//player name and score
                 Console.WriteLine("CPU: " + cpu.Score);
                 Console.WriteLine("-----------------------------------------------------------------------------------------------");
                 Console.WriteLine("");
@@ -500,15 +496,15 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
         
-        internal void ScoreCheck()
+        internal void ScoreCheck()//checks the score
         {
 
-            if (playerOutcome > cpuOutcome)
+            if (playerOutcome > cpuOutcome)//if player rolled higher
             {
                 user.Score++; // if player's role is bigger than cpu's role, player gets a point
 
             }
-            else if (playerOutcome < cpuOutcome)
+            else if (playerOutcome < cpuOutcome)//if cpu rolled higher
             {
                 cpu.Score++; // if cpu's role is bigger than player's role, player gets a point
             }
@@ -517,11 +513,13 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.WriteLine("It's a TIE!!!");
                 Console.WriteLine("No points awarded this round.");
             }
+            Console.WriteLine("");
+
             Console.WriteLine("Your score: " + user.Score + " !");
             Console.WriteLine("Opponent's score: " + cpu.Score + " !");
             Console.WriteLine("-----------------------------------------------------------------------------------------------");
 
-            GameChecker();
+            GameChecker();//checks if the game is still on
 
         }
     }
