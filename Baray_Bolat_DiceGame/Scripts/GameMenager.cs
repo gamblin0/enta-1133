@@ -46,6 +46,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             {
                
                 playingGame = false;
+                GameWinner();
                 GoodbyeMessage();
             }
             else
@@ -62,7 +63,7 @@ namespace Baray_Bolat_DiceGame.Scripts
         {
             Console.WriteLine("GAME OVER");
             Console.WriteLine("Thank you for playing!");
-            Console.WriteLine("Here are the final scores:");
+
         }
 
 
@@ -457,6 +458,13 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.WriteLine("###############################################################################################");
                 Console.WriteLine("THE WINNER IS");
                 Console.WriteLine(user.FetchPlayerName());
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
                 Console.WriteLine("###############################################################################################");
             }
             else if (user.Score < cpu.Score)
@@ -464,6 +472,26 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.WriteLine("###############################################################################################");
                 Console.WriteLine("THE WINNER IS");
                 Console.WriteLine("THE CPU");
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("###############################################################################################");
+            }
+            else
+            {
+                Console.WriteLine("###############################################################################################");
+                Console.WriteLine("THE GAME TIED!!!");
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
                 Console.WriteLine("###############################################################################################");
             }
         }
@@ -484,9 +512,14 @@ namespace Baray_Bolat_DiceGame.Scripts
             {
                 cpu.Score++; // if cpu's role is bigger than player's role, player gets a point
             }
-
+            else
+            {
+                Console.WriteLine("It's a TIE!!!");
+                Console.WriteLine("No points awarded this round.");
+            }
             Console.WriteLine("Your score: " + user.Score + " !");
             Console.WriteLine("Opponent's score: " + cpu.Score + " !");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------");
 
             GameChecker();
 
