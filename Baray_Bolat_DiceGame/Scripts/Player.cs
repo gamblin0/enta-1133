@@ -21,6 +21,10 @@ namespace Baray_Bolat_DiceGame.Scripts
             IsPlayer = true;
         }
 
+        public string FetchPlayerName()
+        {
+            return PlayerName;  
+        }
 
         public void SetName()
         {
