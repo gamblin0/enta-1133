@@ -28,7 +28,14 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         }
 
+        internal abstract class Room
+        {
 
+        }
+
+        internal class TreasureRoom : Room { }
+
+        internal class CombatRoom : Room { }
 
     }
 }
