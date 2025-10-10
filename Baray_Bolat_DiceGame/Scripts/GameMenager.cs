@@ -2,137 +2,539 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Baray_Bolat_DiceGame.Scripts
 {
-   internal class DieRoller
+
+
+
+
+    internal class GameMenager
     {
-        Random random = new Random();
+        Player user = new Player();//called player to get user
 
-        internal void Rolling()
-        {
-            int d6 = random.Next(1, 7); //created random number generator for d6
-            int d8 = random.Next(1, 9); //created random number generator for d8
-            int d12 = random.Next(1, 13); //created random number generator for d12
-            int d20 = random.Next(1, 21); //created random number generator for d20
-            int total = d6 + d8 + d12 + d20; //created total to write the sum of the outcomes
+        Player cpu = new Player();//called player to get cpu
 
-            //printing each roll outcome
-              Console.WriteLine("Your d6 rolled " + d6 + "!");
-            
+        bool playerTurn;//is it player turn? yes or no
 
-              Console.WriteLine("Your d8 rolled " + d8 + "!");
+        int playerOutcome;//player roll
 
+        int cpuOutcome;//cpu roll
 
-              Console.WriteLine("Your d12 rolled " + d12 + "!");
+        bool playingGame;//is the game still going? yes or no
 
-
-              Console.WriteLine("Your d20 rolled " + d20 + "!");
-
-            //printing the total outcome
-              Console.WriteLine("Your total point is " + total + "!");
-            
-        }
         
-        
-    }
-    
-    
-    internal class Operators //created a class to explain the operators
-    {
-        internal void Arihmetics()
+
+        List<int> playerDice = new List<int>//dice list of player
         {
-            int first = 16;
-            int second = 4;
+            6, 8, 12, 20
+        };
+        
 
-              Console.WriteLine("Hi again, this is to explain how arithmetic operators work! Our first number is 16 and the second one is 4!");
-              Console.WriteLine("Our first number is 16 and the second one is 4!");
+        List<int> cpuDice = new List<int>//dice list of cpu
+        {
+            0,1, 2, 3
+        };
+    
 
-              Console.WriteLine("");
+        public void GameChecker()//checks the lists to see if the game should continue
+        {
+            if(playerDice.Count == 0 && cpuDice.Count == 0)//if there is not any dice left in both of the lists
+            {
+               
+                playingGame = false;//ends the game
+                GameWinner();//game winner message
+                GoodbyeMessage();//goodbye message
+                Again();
+            }
+            else
+            {
+                playingGame = true; //game continues
+            }
 
-
-              Console.WriteLine(++first); //added 1 to the first number so until next usage, it will stay 17
-
-              Console.WriteLine("We used '++' to add 1 to our first number");
-
-              Console.WriteLine(""); //used this for space throughout the code
-
-
-              Console.WriteLine(--first); //after subtracting 1 from the first number, it goes back to 16 so we can use it as 16 from now on
-
-              Console.WriteLine("Then we used '--' to subtract 1 from our first number after we added 1 before that");
-
-              Console.WriteLine("");
-
-
-              Console.WriteLine(first + second); //added both numbers with +
-
-              Console.WriteLine("We added both of our numbers to eachother using '+' (16 + 4 = 20)");
-
-              Console.WriteLine("");
-
-
-              Console.WriteLine(first - second); //subtracted both numbers with -
-
-              Console.WriteLine("We subtracted secon number from the firts one using '-' (16 - 4 = 12)");
-
-              Console.WriteLine("");
-
-
-              Console.WriteLine(first * second); //multiplied numbers with *
-
-              Console.WriteLine("We multiplied our nubers using '*' (16 x 4 = 64)");
-
-              Console.WriteLine("");
-
-
-              Console.WriteLine(first / second); //divided numbers wiht /
-
-              Console.WriteLine("We divided our first number with the second one using '/' (16 / 4 = 4)");
-
-              Console.WriteLine("");
-
-
-              Console.WriteLine(first % second); //used remainder with %
-
-              Console.WriteLine("We used remainder with '%' (16 - (16 / 4) x 4 = 0)");
-
+           
 
         }
-    }
-    
-    
-    
-    
-    
-    internal class GameManager
-    {
+
+
+        public void GoodbyeMessage()//goodbye message for when the game ends
+        {
+            Console.WriteLine("GAME OVER");
+            Console.WriteLine("Thank you for playing!");
+
+        }
+
+
+
+        public int CoinFlip()//coin flip to decide the turn order
+        {
+            Random turnOrder = new Random();//randomizer
+
+            int coinFlip = turnOrder.Next(2);//random outcome out of 1 or 0
+
+            playerTurn = coinFlip > 0;//if the random outcome is 1 then it is player's turn
+
+            Console.WriteLine("Flipping a coin to decide who goes first...");
+
+            return coinFlip;//returning so I can use it later
+        }
+
+
+
+
         //created a function to play the game
-        internal void Playgame()
+        public void Playgame()
         {
-            //welcome message
-            Console.WriteLine("Welcome player, it's Baray and today's date is 2025-09-17!");
 
-            //created an instance to call Dieroller class to GameManager class
-              DieRoller DieRollerInstance = new DieRoller();
 
-            //activated Rolling function that was inside the DieRoller class
-                DieRollerInstance.Rolling();
 
-            Console.WriteLine("");
-            Console.WriteLine("");
+            Player user = new Player();//introduce user to make a new player
+            Player cpu = new Player();//introduce cpu  to make a new player
+            Random r = new Random();//introduce r random  to make a new random
+            DiceRoller roller = new DiceRoller();//introduce roller to make a new DiceRoller
+           
 
-              Operators OperatorInstance = new Operators(); //called the operatorss class with the instance
+            user.Askname();//calls Askname and asks name for player
+            cpu.SetName();//calls SetName andsets name for cpu
+            Rules();//calls rules function
+            
 
-                OperatorInstance.Arihmetics();
+            Ready();//calls Ready function
 
-            Console.WriteLine("");
+            CoinFlip();//calls CoinFlip function
 
-            Console.WriteLine("This has been fun! Today's date is 2025-09-18. Until next time, bye!");
+
+            GameChecker();//calls GameChecker function
+
+
+
+            do
+            {
+                
+                TurnLoop();//calls The turn loop
+                
+                
+
+            } while (playingGame);//plays the turn while playingGame is true
+
+           
+
+        }
+        public void Again()//asking if the player wants to play again
+        {
+            Console.WriteLine("Do you want to play again?");
+            string continueInputAgain = Console.ReadLine();
+
+            if (continueInputAgain == "y")//if they say yes (y) then the game restarts
+            {
+                Console.WriteLine("Let's roll!!");
+                Playgame();
+
+            }
+            else if (continueInputAgain == "n")//if they say no (n) then I print a small goodbye message and ends the game
+            {
+                Console.WriteLine("Well, see you another time!");
+                playingGame = false;
+
+            }
 
         }
 
+        
+
+        public void Ready()//asks the player if they are ready
+        {
+            Console.WriteLine("Are you ready?");
+            Console.WriteLine("Type 'y' for yes and 'n' for no");
+            string continueInput = Console.ReadLine();//gets input
+
+            if (continueInput == "y")//if they are ready we print this
+            {
+                Console.WriteLine("Let's roll!!");
+                
+            }
+            else if (continueInput == "n")//even if they are not ready the game starts
+            {
+                Console.WriteLine("Well, you better be because the game is starting!");
+                
+            }
+        }
+
+        public void ContinuePlaying()//asking if they want to keep playing or leave the game
+        {
+           
+
+            Console.WriteLine("Do you want to keep playing?");
+            Console.WriteLine("Type 'y' for yes and 'n' for no");
+            string continueInput = Console.ReadLine();
+
+            if (continueInput == "y")//if they want to play, the game continues
+            {
+                
+                TurnLoop();
+            }
+            else if (continueInput == "n")//if they dont want to play the game ends
+            {
+                Console.WriteLine("Thanks for playing!");
+                playingGame = false;    
+            }
+            else//if they didnt write a correct input, we ask again
+            {
+                Console.WriteLine("Please type y/n");
+                ContinuePlaying();  
+            }
+        }
+
+        public void Rules()
+        {
+            Console.WriteLine("###############################################################################################");
+            Console.WriteLine("                                          RULES                                                ");
+            Console.WriteLine("###############################################################################################");
+            Console.WriteLine("");
+            Console.WriteLine("You have 4 dice; 6, 8, 12 and 20.");
+            Console.WriteLine("");
+            Console.WriteLine("You can only roll each dice once and after you roll the die gets removed from your inventory.");
+            Console.WriteLine("");
+            Console.WriteLine("Both players roll dice once every turn,");
+            Console.WriteLine("");
+            Console.WriteLine("Higher roll for that round gets a point.");
+            Console.WriteLine("");
+            Console.WriteLine("Game continues until there is no dice left in any inventory.");
+            Console.WriteLine("");
+            Console.WriteLine("The player who has more points at the end of the game wins the game");
+            Console.WriteLine("");
+            Console.WriteLine("GOOD LUCK!");
+            Console.WriteLine("");
+            Console.WriteLine("###############################################################################################");
+        }//explains he rules
+
+        public void CpuTurn()
+        {
+
+
+            DiceRoller dice = new DiceRoller();
+
+            
+            
+            Random random = new Random();
+
+            Random randomPick = new Random();
+
+            int picker = randomPick.Next(1, 5);//picks random dice from 1 to 4
+
+
+
+            if (picker == 1)
+            {
+                if (cpuDice.Contains(0))//checks if the dice is still in the list
+                {
+                    cpuOutcome = dice.Roller(6);//if the dice is available it rolls
+                    cpuDice.Remove(0);//removes rolled dice
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Opponent is rolling a d6");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    CpuTurn();//if the die is already used, asks for a new die
+                }
+
+                    
+            }
+
+            if (picker == 2)
+            {
+                if (cpuDice.Contains(1))//checks if the dice is still in the list
+                {
+                    cpuOutcome = dice.Roller(8);//if the dice is available it rolls
+                    cpuDice.Remove(1);//removes rolled dice
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Opponent is rolling a d8");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    CpuTurn();//if the die is already used, asks for a new die
+                }
+            }
+
+            if (picker == 3)
+            {
+                if (cpuDice.Contains(2))//checks if the dice is still in the list
+                {
+                    cpuOutcome = dice.Roller(12);//if the dice is available it rolls
+                    cpuDice.Remove(2);//removes rolled dice
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Opponent is rolling a d12");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    CpuTurn();//if the die is already used, asks for a new die
+                }
+            }
+
+            if (picker == 4)
+            {
+                if (cpuDice.Contains(3))//checks if the dice is still in the list
+                {
+                    cpuOutcome = dice.Roller(20);//if the dice is available it rolls
+                    cpuDice.Remove(3);//removes rolled dice
+
+                    Console.WriteLine("");
+                    Console.WriteLine("Opponent is rolling a d20");
+                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("");
+                }
+                else
+                {
+                    CpuTurn();//if the die is already used, asks for a new die
+                }
+            }
+
+
+        }//the whole loopable cpu turn
+
+        public void PlayerTurn()
+        {
+
+            DiceRoller dice = new DiceRoller();
+
+
+           
+               
+                //here, is when it is player's turn first. Player is asked to roll and then the cpu rolls. There is most probably a better way to do it with functions but I couldn't make it work when I tried. Might need help with that.
+                Console.WriteLine("Which die do you want to roll? (write 6, 8, 12 or 20 to pick the dice.)");
+            Console.WriteLine("Dice left: " + string.Join(", ", playerDice));
+
+            if (int.TryParse(Console.ReadLine(), out int number))
+                {
+
+
+                    if (number == 6)
+                    {
+                    if (playerDice.Contains(6))//checks if the dice is still in the list
+                    {
+                        playerOutcome = dice.Roller(6); //if the dice is available it rolls
+                        playerDice.Remove(6);//removes rolled dice
+
+                        Console.WriteLine("");
+                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please pick a different die");
+                        PlayerTurn();//if the die is already used, asks for a new die
+                    }
+
+                    }
+
+                    if (number == 8)
+                    {
+
+                    if (playerDice.Contains(8))//checks if the dice is still in the list
+                    {
+                        playerOutcome = dice.Roller(8); //if the dice is available it rolls
+                        playerDice.Remove(8);//removes rolled dice
+
+                        Console.WriteLine("");
+                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please pick a different die");
+                        PlayerTurn();//if the die is already used, asks for a new die
+                    }
+                }
+
+                    if (number == 12)
+                {
+                    if (playerDice.Contains(12))//checks if the dice is still in the list
+                    {
+                        playerOutcome = dice.Roller(12);//if the dice is available it rolls
+                        playerDice.Remove(12);//removes rolled dice
+
+                        Console.WriteLine("");
+                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please pick a different die");
+                        PlayerTurn();//if the die is already used, asks for a new die
+                    }
+                }
+
+                    if (number == 20)
+                    {
+
+                    if (playerDice.Contains(20))//checks if the dice is still in the list
+                    {
+                        playerOutcome = dice.Roller(20);//if the dice is available it rolls
+                        playerDice.Remove(20);//removes rolled dice
+
+                        Console.WriteLine("");
+                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine("");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Please pick a different die");
+                        PlayerTurn();//if the die is already used, asks for a new die
+                    }
+                }
+
+
+
+                }
+                else
+                {
+                    Console.WriteLine("Please enter 6, 8, 12 or 20.");
+                    PlayerTurn();   //if the they enter anything else than wanted input, it asks them to put a valid input
+            }
+            
+        }//the whole loopable player turn
+        public void TurnLoop()
+        {
+
+            DiceRoller rolling = new DiceRoller();
+            //rolling.Roller();
+
+
+            int playerOutcome = 0;
+
+            int cpuOutcome = 0;
+
+
+
+            if (playerTurn)//player turn
+            {
+                Console.WriteLine("It's your turn!");
+                PlayerTurn();
+                CpuTurn();
+            }
+            else//cpu turn
+            {
+                Console.WriteLine("It's your opponent's turn!");
+                CpuTurn();
+                PlayerTurn();
+            }
+
+
+
+            ScoreCheck();//calls score checker
+
+            if (playingGame = true)
+            {
+                ContinuePlaying();//if there is still dice the game continues
+            }
+            else
+            {
+                Again();//if the game is over, it asks if you want to play again
+            }
+        }
+
+        public void GameWinner()//shows the winner
+        {
+            if (user.Score > cpu.Score)
+            {
+                Player player = new Player();
+
+                Console.WriteLine("###############################################################################################");
+                Console.WriteLine("THE WINNER IS");
+                Console.WriteLine(user.FetchPlayerName());//player name
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);//player name and score
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("###############################################################################################");
+            }
+            else if (user.Score < cpu.Score)
+            {
+                Console.WriteLine("###############################################################################################");
+                Console.WriteLine("THE WINNER IS");
+                Console.WriteLine("THE CPU");
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("###############################################################################################");
+            }
+            else
+            {
+                Console.WriteLine("###############################################################################################");
+                Console.WriteLine("THE GAME TIED!!!");
+                Console.WriteLine("");
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("Here are the final scores:");
+                Console.WriteLine("CPU: " + cpu.Score);
+                Console.WriteLine(user.FetchPlayerName() + ": " + user.Score);
+                Console.WriteLine("-----------------------------------------------------------------------------------------------");
+                Console.WriteLine("");
+                Console.WriteLine("###############################################################################################");
+            }
+        }
+            
+
+
+
+        
+        internal void ScoreCheck()//checks the score
+        {
+
+            if (playerOutcome > cpuOutcome)//if player rolled higher
+            {
+                user.Score++; // if player's role is bigger than cpu's role, player gets a point
+
+            }
+            else if (playerOutcome < cpuOutcome)//if cpu rolled higher
+            {
+                cpu.Score++; // if cpu's role is bigger than player's role, player gets a point
+            }
+            else
+            {
+                Console.WriteLine("It's a TIE!!!");
+                Console.WriteLine("No points awarded this round.");
+            }
+            Console.WriteLine("");
+
+            Console.WriteLine("Your score: " + user.Score + " !");
+            Console.WriteLine("Opponent's score: " + cpu.Score + " !");
+            Console.WriteLine("-----------------------------------------------------------------------------------------------");
+
+            GameChecker();//checks if the game is still on
+
+        }
     }
 }
+
+
+        
+           
+        
+        
+        //private bool CheckGameAvailability()
+        //{
+            //if there is dice left
+        //}
+     
+    
+
+
