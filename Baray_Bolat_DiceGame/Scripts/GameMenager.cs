@@ -522,6 +522,76 @@ namespace Baray_Bolat_DiceGame.Scripts
             GameChecker();//checks if the game is still on
 
         }
+
+        public void Start()
+        {
+            Console.WriteLine("You find yourself in a room...");
+            Room[,] dungeon = new Room[3, 3];
+            int roomNumber = 0;
+            Random random = new Random();
+
+            // building the  dungeon
+            for (int x = 0; x < dungeon.GetLength(0); x++)
+            {
+                for (int y = 0; y < dungeon.GetLength(1); y++)
+                {
+                    int roomType = random.Next(0, 3);
+                    switch (roomType)
+                    {
+                        case 0:
+                            dungeon[x, y] = new Room.EmptyRoom(roomNumber, x, y);
+                            break;
+                        case 1:
+                            dungeon[x, y] = new Room.EmptyRoom(roomNumber, x, y);
+                            break;
+                        case 2:
+                            dungeon[x, y] = new Room.EmptyRoom(roomNumber, x, y);
+                            break;
+                        default:
+                            dungeon[x, y] = new Room.EmptyRoom(roomNumber, x, y);
+                            break;
+                    }
+                    roomNumber++;
+                }
+            }
+
+            //linking rooms
+            for (int x = 0; x < dungeon.GetLength(0); x++)
+            {
+                for (int y = 0; y < dungeon.GetLength(1); y++)
+                {
+
+                    Room currentRoom = dungeon[x, y];
+                    if (x > 0)
+                        currentRoom.North = dungeon[x - 1, y];
+                    if (x < 0)
+                        currentRoom.South = dungeon[x + 1, y];
+                    if (y > 0)
+                        currentRoom.West = dungeon[x, y - 1];
+                    if (y < 0)
+                        currentRoom.East = dungeon[x, y + 1];
+
+                }
+            }
+
+            //starting the game in first room
+            Room currentRoom = dungeon[0, 0];
+            currentRoom.OnRoomEntered();
+            currentRoom.RoomDescription();
+
+            bool isPlaying = true;
+            while (isPlaying)
+            {
+                Console.WriteLine("\nWhere would you like to go? ");
+                string input = Console.ReadLine().ToLower();
+
+            }
+
+
+
+
+
+        }
     }
 }
 
