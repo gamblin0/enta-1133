@@ -67,7 +67,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public override void RoomDescription()
             {
-                Console.WriteLine("The room looks empty...");
+                Console.WriteLine("\n\nThe room looks empty...");
             }
         }
         public class TreasureRoom : Room
@@ -83,15 +83,17 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
         }
 
-        public class EncounterRoom : Room
+        public class CombatRoom : Room
         {
-            public EncounterRoom(int roomNumber, int row, int column) : base(roomNumber, row, column)
+            public CombatRoom(int roomNumber, int row, int column) : base(roomNumber, row, column)
             {
 
             }
             public override void RoomDescription()
             {
                 Console.WriteLine("You encountered an enemy!");
+                GameMenager dicegame = new GameMenager();
+                dicegame.Playgame();
             }
         }
 
