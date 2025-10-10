@@ -582,7 +582,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             bool isPlaying = true;
             while (isPlaying)
             {
-                Console.WriteLine("\nWhere would you like to go? TESTING");
+                Console.WriteLine("\nWhere would you like to go? ");
                 string input = Console.ReadLine().ToLower();
 
             }
