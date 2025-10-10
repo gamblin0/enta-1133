@@ -517,7 +517,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             Console.WriteLine("Your score: " + user.Score + " !");
             Console.WriteLine("Opponent's score: " + cpu.Score + " !");
-            Console.WriteLine("-----------------------------------------------------------------------------------------------");
+            Console.WriteLine("------------------------------------------------------------------------------------------------");
 
             GameChecker();//checks if the game is still on
 
