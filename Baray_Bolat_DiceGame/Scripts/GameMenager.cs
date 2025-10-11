@@ -12,7 +12,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
 
-    internal class GameMenager
+    internal class GameManager
     {
         Player user = new Player();//called player to get user
 

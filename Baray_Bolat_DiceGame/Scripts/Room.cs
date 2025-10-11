@@ -90,7 +90,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             if (searchornot == 1)
             {
-               GameMenager dieAdder = new GameMenager();
+               GameManager dieAdder = new GameManager();
                 Random randomDie = new Random();
 
                 List<int> sourceNumbers = new List<int> { 6, 8, 12, 20 };
@@ -154,7 +154,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nYou encountered an enemy!");
                 Console.ForegroundColor = ConsoleColor.White;
-                GameMenager dicegame = new GameMenager();
+                GameManager dicegame = new GameManager();
                 dicegame.Playgame();
             }
         }
