@@ -49,6 +49,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                 GameWinner();//game winner message
                 GoodbyeMessage();//goodbye message
                 Again();
+                //Start();
             }
             else
             {
@@ -99,6 +100,10 @@ namespace Baray_Bolat_DiceGame.Scripts
 
            // user.Askname();//calls Askname and asks name for player
             cpu.SetName();//calls SetName andsets name for cpu
+
+            Console.WriteLine("###############################################################################################");
+            Console.WriteLine("                                      COMBAT STARTS                                            ");
+            Console.WriteLine("###############################################################################################");
             Rules();//calls rules function
             
 
@@ -235,8 +240,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuDice.Remove(0);//removes rolled dice
 
                     Console.WriteLine("");
-                    Console.WriteLine("Opponent is rolling a d6");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("Kelk the Horrible is rolling a d6");
+                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
                     Console.WriteLine("");
                 }
                 else
@@ -255,8 +260,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuDice.Remove(1);//removes rolled dice
 
                     Console.WriteLine("");
-                    Console.WriteLine("Opponent is rolling a d8");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("Kelk the Horrible is rolling a d8");
+                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
                     Console.WriteLine("");
                 }
                 else
@@ -273,8 +278,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuDice.Remove(2);//removes rolled dice
 
                     Console.WriteLine("");
-                    Console.WriteLine("Opponent is rolling a d12");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("Kelk the Horrible is rolling a d12");
+                    Console.WriteLine("Kelk the Horrible " + cpuOutcome + " !");//prints roll
                     Console.WriteLine("");
                 }
                 else
@@ -291,8 +296,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuDice.Remove(3);//removes rolled dice
 
                     Console.WriteLine("");
-                    Console.WriteLine("Opponent is rolling a d20");
-                    Console.WriteLine("Opponent rolled " + cpuOutcome + " !");//prints roll
+                    Console.WriteLine("Kelk the Horrible is rolling a d20");
+                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
                     Console.WriteLine("");
                 }
                 else
@@ -426,7 +431,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             else//cpu turn
             {
-                Console.WriteLine("It's your opponent's turn!");
+                Console.WriteLine("It's Kelk the Horrible's turn!");
                 CpuTurn();
                 PlayerTurn();
             }
@@ -437,11 +442,13 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             if (playingGame = true)
             {
-                ContinuePlaying();//if there is still dice the game continues
+               // ContinuePlaying();//if there is still dice the game continues
+               TurnLoop();
             }
             else
             {
                 Again();//if the game is over, it asks if you want to play again
+                //Start();
             }
         }
 
@@ -525,12 +532,15 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public void Start()
         {
+             
             Console.WriteLine("You find yourself in a room...");
-            Room[,] dungeon = new Room[3, 3];
-            int roomNumber = 0;
+            Room[,] dungeon = new Room[3, 3]; //generates the rooms
+            int roomNumber = 0; //sets the starting room
             Random random = new Random();
 
-            // generating the  dungeon
+
+
+            // generating a random dungeon
             for (int x = 0; x < dungeon.GetLength(0); x++)
             {
                 for (int y = 0; y < dungeon.GetLength(1); y++)
@@ -576,25 +586,28 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             //starting the game in first room
             Room current = dungeon[0, 0];
-            current.OnRoomEntered();
-            current.RoomDescription();
+
+            current.OnRoomEntered(); //message for when you first enter
+            current.MapVisual(dungeon, current); //generating visual for current room
+            current.RoomDescription(); //description current room
 
             bool isPlaying = true;
             while (isPlaying)
             {
                 Console.WriteLine("\nWhat would you like to do? ");
                 Console.WriteLine("You can: ");
-                Console.WriteLine("- Search the room, type 'search' ");
-                Console.WriteLine("- Move rooms, type 'north, south, east or west' ");
-                string input = Console.ReadLine().ToLower();
+                Console.WriteLine("- To search the room, type 'search' ");
+                Console.WriteLine("- To move rooms, type 'north, south, east or west' ");
+                string input = Console.ReadLine().ToLower(); //makes every input lowercase
                 switch (input)
                 {
                     case "north":
-                        if (current.North != null)
+                        if (current.North != null) //if the north isn't empty
                         {
-                            current.OnRoomExit();
-                            current = current.North;
+                            current.OnRoomExit(); //exits the room before
+                            current = current.North; //sets the current room as the new room
                             current.OnRoomEntered();
+                            current.MapVisual(dungeon, current);
                             current.RoomDescription();
                         }
                         else
@@ -605,9 +618,10 @@ namespace Baray_Bolat_DiceGame.Scripts
                     case "south":
                         if (current.South != null)
                         {
-                            current.OnRoomExit();
-                            current = current.South;
+                            current.OnRoomExit(); //exits the room before
+                            current = current.South; //sets the current room as the new room
                             current.OnRoomEntered();
+                            current.MapVisual(dungeon, current);
                             current.RoomDescription();
                         }
                         else
@@ -619,9 +633,10 @@ namespace Baray_Bolat_DiceGame.Scripts
                     case "east":
                         if (current.East != null)
                         {
-                            current.OnRoomExit();
-                            current = current.East;
+                            current.OnRoomExit(); //exits the room before
+                            current = current.East; //sets the current room as the new room
                             current.OnRoomEntered();
+                            current.MapVisual(dungeon, current);
                             current.RoomDescription();
                         }
                         else
@@ -633,9 +648,10 @@ namespace Baray_Bolat_DiceGame.Scripts
                     case "west":
                         if (current.West != null)
                         {
-                            current.OnRoomExit();
-                            current = current.West;
+                            current.OnRoomExit(); //exits the room before
+                            current = current.West; //sets the current room as the new room
                             current.OnRoomEntered();
+                            current.MapVisual(dungeon, current);
                             current.RoomDescription();
                         }
                         else
@@ -670,11 +686,7 @@ namespace Baray_Bolat_DiceGame.Scripts
            
         
         
-        //private bool CheckGameAvailability()
-        //{
-            //if there is dice left
-        //}
-     
+       
     
 
 

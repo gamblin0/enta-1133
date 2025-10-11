@@ -27,12 +27,31 @@ namespace Baray_Bolat_DiceGame.Scripts
             WasVisited = false;
         }
 
+        //map visual generator
+        public void MapVisual(Room[,] dungeon, Room playerRoom)
+        {
+            for(int i = 0; i <3;  i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (dungeon[i, j] == playerRoom)
+                        Console.Write("[x]");
+                    else
+                    {
+                        Console.Write("[ ]");
+                    }
+                }
+                Console.WriteLine();
+            }
+        }
+       
+
         // Room methods
         public virtual void RoomDescription()
         {
             if (!WasVisited)
             {
-                Console.WriteLine("You don't see anything worth your time in this room.");
+                Console.WriteLine("\nYou don't see anything worth your time in this room.");
             }
             else
             {
@@ -44,17 +63,30 @@ namespace Baray_Bolat_DiceGame.Scripts
         public virtual void OnRoomEntered()
         {
             WasVisited = true;
-            Console.WriteLine($"You are entering room {RoomNumber}");
+            
+            Console.WriteLine($"\nYou are entering room {RoomNumber}");
         }
 
         public virtual void OnRoomSearched()
         {
-            Console.WriteLine("You search the room but couldn't find anything worth your time.");
+            Random randomsearch = new Random();
+            int searchornot = randomsearch.Next(0, 2);
+
+            if (searchornot == 0)
+            {
+                Console.WriteLine("\nYou search the room but couldn't find anything worth your time.");
+            }
+            if (searchornot == 1)
+            {
+
+            }
+                        
+            
         }
 
         public virtual void OnRoomExit()
         {
-            Console.WriteLine($"You are leaving room {RoomNumber}");
+            Console.WriteLine($"\nYou are leaving room {RoomNumber}");
         }
 
         // Room subclasses
@@ -79,7 +111,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public override void RoomDescription()
             {
-                Console.WriteLine("You found a treasure room!");
+                Console.WriteLine("\n\nYou found a treasure room!");
             }
         }
 
@@ -91,7 +123,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             public override void RoomDescription()
             {
-                Console.WriteLine("You encountered an enemy!");
+                Console.WriteLine("\n\nYou encountered an enemy!");
                 GameMenager dicegame = new GameMenager();
                 dicegame.Playgame();
             }
