@@ -28,7 +28,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public void SetName()
         {
-            PlayerName = "cpu";
+            PlayerName = "Kelk the Horrible";
             IsPlayer = false;
         }
 
