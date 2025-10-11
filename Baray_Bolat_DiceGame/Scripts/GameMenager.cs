@@ -26,13 +26,23 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         bool playingGame;//is the game still going? yes or no
 
+
+        //var playerInventory = new Dictionary<int, string>()
+        // {
+
+        // }
+       
+        
+            
         
 
         List<int> playerDice = new List<int>//dice list of player
         {
             6, 8, 12, 20
         };
-        
+        public List<int> PlayerDice => new List<int>(playerDice);
+
+
 
         List<int> cpuDice = new List<int>//dice list of cpu
         {

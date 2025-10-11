@@ -55,22 +55,34 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             else
             {
-                Console.WriteLine("You have been in this room before.");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.WriteLine("\nYou have been in this room before.");
+                Console.ForegroundColor = ConsoleColor.White;
             }
 
         }
 
         public virtual void OnRoomEntered()
         {
-            WasVisited = true;
             
             Console.WriteLine($"\nYou are entering room {RoomNumber}");
+
+            Console.WriteLine($"\nYou currently have (inventory will be shown here) in your inventory");
+
+            if (WasVisited)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("\nYou have already been in this room.");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+            WasVisited = true;
+
         }
 
         public virtual void OnRoomSearched()
         {
-            Random randomsearch = new Random();
-            int searchornot = randomsearch.Next(0, 2);
+            Random randomSearch = new Random();
+            int searchornot = randomSearch.Next(0, 2);
 
             if (searchornot == 0)
             {
@@ -78,7 +90,21 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             if (searchornot == 1)
             {
+               GameMenager dieAdder = new GameMenager();
+                Random randomDie = new Random();
 
+                List<int> sourceNumbers = new List<int> { 6, 8, 12, 20 };
+                int randomIndex = randomDie.Next(sourceNumbers.Count);
+
+                Console.WriteLine($"You found a d{randomIndex}");
+
+
+                
+                dieAdder.PlayerDice.AddRange(sourceNumbers);
+
+                    
+                       
+                    
             }
                         
             
@@ -111,7 +137,9 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public override void RoomDescription()
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.WriteLine("\n\nYou found a treasure room!");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
 
@@ -123,7 +151,9 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             public override void RoomDescription()
             {
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("\n\nYou encountered an enemy!");
+                Console.ForegroundColor = ConsoleColor.White;
                 GameMenager dicegame = new GameMenager();
                 dicegame.Playgame();
             }
