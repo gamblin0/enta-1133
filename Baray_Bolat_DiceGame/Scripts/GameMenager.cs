@@ -99,7 +99,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             playerTurn = coinFlip > 0;//if the random outcome is 1 then it is player's turn
 
-            Console.WriteLine("Flipping a coin to decide who goes first...");
+           // Console.WriteLine("Flipping a coin to decide who goes first...");
 
             return coinFlip;//returning so I can use it later
         }
@@ -179,12 +179,12 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             if (continueInput == "y")//if they are ready we print this
             {
-                Console.WriteLine("Let's roll!!");
+                Console.WriteLine("\nOnly one will be victorious!\n");
                 
             }
             else if (continueInput == "n")//even if they are not ready the game starts
             {
-                Console.WriteLine("Well, you better be because the game is starting!");
+                Console.WriteLine("\nWell, you better be because the fight started!\n");
                 
             }
         }
@@ -261,10 +261,9 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuOutcome = dice.Roller(6);//if the dice is available it rolls
                     cpuDice.Remove(0);//removes rolled dice
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Kelk the Horrible is rolling a d6");
-                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
-                    Console.WriteLine("");
+                    
+                    Console.WriteLine($"\nKelk the Horrible attacked and dealt {cpuOutcome} damage!\n");
+                    
                 }
                 else
                 {
@@ -281,10 +280,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuOutcome = dice.Roller(8);//if the dice is available it rolls
                     cpuDice.Remove(1);//removes rolled dice
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Kelk the Horrible is rolling a d8");
-                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
-                    Console.WriteLine("");
+                    Console.WriteLine($"\nKelk the Horrible attacked and dealt {cpuOutcome} damage!\n");
                 }
                 else
                 {
@@ -299,10 +295,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuOutcome = dice.Roller(12);//if the dice is available it rolls
                     cpuDice.Remove(2);//removes rolled dice
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Kelk the Horrible is rolling a d12");
-                    Console.WriteLine("Kelk the Horrible " + cpuOutcome + " !");//prints roll
-                    Console.WriteLine("");
+                    Console.WriteLine($"\nKelk the Horrible attacked and dealt {cpuOutcome} damage!\n");
                 }
                 else
                 {
@@ -317,10 +310,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                     cpuOutcome = dice.Roller(20);//if the dice is available it rolls
                     cpuDice.Remove(3);//removes rolled dice
 
-                    Console.WriteLine("");
-                    Console.WriteLine("Kelk the Horrible is rolling a d20");
-                    Console.WriteLine("Kelk the Horrible rolled " + cpuOutcome + " !");//prints roll
-                    Console.WriteLine("");
+                    Console.WriteLine($"\nKelk the Horrible attacked and dealt {cpuOutcome} damage!\n");
                 }
                 else
                 {
@@ -357,12 +347,12 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(6);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
                     {
-                        Console.WriteLine("Please pick a different die");
+                        Console.WriteLine("Please pick a different item");
                         PlayerTurn();//if the die is already used, asks for a new die
                     }
 
@@ -377,12 +367,12 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(8);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
                     {
-                        Console.WriteLine("Please pick a different die");
+                        Console.WriteLine("Please pick a different item");
                         PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
@@ -395,12 +385,12 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(12);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
                     {
-                        Console.WriteLine("Please pick a different die");
+                        Console.WriteLine("Please pick a different item");
                         PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
@@ -414,12 +404,12 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(20);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine("You rolled " + playerOutcome + " !");
+                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
                     {
-                        Console.WriteLine("Please pick a different die");
+                        Console.WriteLine("Please pick a different item");
                         PlayerTurn();//if the die is already used, asks for a new die
                     }
                 }
@@ -449,13 +439,13 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             if (playerTurn)//player turn
             {
-                Console.WriteLine("It's your turn!");
+                Console.WriteLine("You are faster, chose how you want to attack!");
                 PlayerTurn();
                 CpuTurn();
             }
             else//cpu turn
             {
-                Console.WriteLine("It's Kelk the Horrible's turn!");
+                Console.WriteLine("Kelk the Horrible is way faster than you, he attacks first!");
                 CpuTurn();
                 PlayerTurn();
             }
@@ -688,7 +678,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                         break;
 
                     case "search":
-                        current.OnRoomSearched();
+                        //current.OnRoomSearched();
+                        Console.WriteLine("Can't make this wokr right now");
                         break;
                     default:
                         Console.WriteLine("Please write 'north, south, east, west'. ");

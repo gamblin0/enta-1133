@@ -79,10 +79,20 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         }
 
-        public virtual void OnRoomSearched()
+        public virtual void OnRoomSearched(Player player)
         {
+            Player playerInventory = new Player();
+            Items possibleItems;
+
+            List<Items> loot = new List<Items>();
+
             Random randomSearch = new Random();
             int searchornot = randomSearch.Next(0, 2);
+
+            //player.AddItems(Items loot);
+            Random randomLoot = new Random();
+            int foundLoot = randomLoot.Next(0, 6);
+
 
             if (searchornot == 0)
             {
@@ -90,17 +100,13 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             if (searchornot == 1)
             {
-               GameManager dieAdder = new GameManager();
-                Random randomDie = new Random();
+              switch(foundLoot)
+                {
+                    //case 0:
+                       // playerInventory.AddItems(possibleItems.Hatchet);
+                       // break;
 
-                List<int> sourceNumbers = new List<int> { 6, 8, 12, 20 };
-                int randomIndex = randomDie.Next(sourceNumbers.Count);
-
-                Console.WriteLine($"You found a d{randomIndex}");
-
-
-                
-                dieAdder.PlayerDice.AddRange(sourceNumbers);
+                }
 
                     
                        

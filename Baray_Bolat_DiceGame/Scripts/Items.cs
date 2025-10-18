@@ -11,19 +11,22 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public string ItemName { get; set; }
 
-        Random CoinFound = new Random();
+        Random coinFound = new Random();
 
-        Random Heal = new Random();
+        Random heal = new Random();
 
-        Random Damage = new Random();
+        Random damage = new Random();
+
+        Player inventory = new Player();
 
 
         public Items()
         {
             //calls the lists to get acces to inventory
+            DiceRoller dice = new DiceRoller();
         }
 
-        List<Items> Inventory = new List<Items>();
+       
 
 
 
@@ -49,15 +52,15 @@ namespace Baray_Bolat_DiceGame.Scripts
             Console.WriteLine("You searched the room...\n");
         }
 
-        public virtual void Healed()
-        {
+       // public virtual void Healed()
+       // {
             
-        }
+       // }
 
-        public virtual void DamageDone()
-        {
+       // public virtual void DamageDone()
+       // {
             
-        }
+       // }
 
 
 
@@ -72,8 +75,14 @@ namespace Baray_Bolat_DiceGame.Scripts
               //GameManager Lists = new GameManager();
 
               //List<string> playerList = 
+              
 
             //will be d6 damage
+
+            public Dagger()
+            {
+                
+            }
         }
 
         public class Hatchet : Items, IWeapon
@@ -94,6 +103,7 @@ namespace Baray_Bolat_DiceGame.Scripts
         public class Axe : Items, IWeapon
         {
             //will be d12 damage
+
 
             public Axe()
             {
@@ -125,9 +135,9 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.WriteLine("You found some GOLD!");
                 // will say "+" (random number for item count) GOLD
 
-                CoinFound.Next(1, 82);
+                coinFound.Next(1, 82);
 
-                Console.WriteLine($"   + {CoinFound}");
+                Console.WriteLine($"   + {coinFound}");
             }
 
             public override void OnUse()
@@ -157,9 +167,9 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public override void OnUse()
             {
-                Heal.Next(1, 26);
+                heal.Next(1, 26);
 
-                Console.WriteLine($"You ate the Doner and restored {Heal} health.");
+                Console.WriteLine($"You ate the Doner and restored {heal} health.");
             }
         }
     }

@@ -13,17 +13,17 @@ namespace Baray_Bolat_DiceGame.Scripts
         public bool IsPlayer;
 
 
-        List<Items> Inventory = new List<Items>();
+        List<Items> inventory = new List<Items>();
 
-        public void AddItems()
+        public void AddItems(string itemName, int amount)
         {
-
+           // inventory.Add(new Items(itemName, amount));
         }
 
-        public void RemoveItems()
-        {
+       // public void RemoveItems(Items item)
+       // {
 
-        }
+       // }
 
 
 
@@ -47,9 +47,9 @@ namespace Baray_Bolat_DiceGame.Scripts
             IsPlayer = false;
         }
 
-        public void Playerone()
-        {
+     // public void Playerone()
+     // {
            
-        }
+     // }
     }
 }
