@@ -160,7 +160,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             public override void OnFound()
             {
                 Console.WriteLine("You found a juicy and delicious Doner Kebap!");
-                // will say "+" (random number for item count) Doner (this random number range will be lower than random gold range)
+                // will say "+" (random number for item count) Doner (this random number range will be lower than random gold range.)
 
                 
             }
