@@ -12,6 +12,21 @@ namespace Baray_Bolat_DiceGame.Scripts
         public int Score = 0;
         public bool IsPlayer;
 
+
+        List<Items> Inventory = new List<Items>();
+
+        public void AddItems()
+        {
+
+        }
+
+        public void RemoveItems()
+        {
+
+        }
+
+
+
         public void Askname()
         {
             string asknameMessage = "What is your name?";

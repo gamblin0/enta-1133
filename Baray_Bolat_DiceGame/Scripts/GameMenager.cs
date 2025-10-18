@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography.X509Certificates;
@@ -31,10 +32,8 @@ namespace Baray_Bolat_DiceGame.Scripts
         // {
 
         // }
-       
-        
-            
-        
+
+
 
         List<int> playerDice = new List<int>//dice list of player
         {
@@ -46,12 +45,24 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         List<int> cpuDice = new List<int>//dice list of cpu
         {
-            0,1, 2, 3
+            0, 1, 2, 3
         };
-    
+        public List<int> CpuDice => new List<int>(cpuDice);
+
+
+
+
+
 
         public void GameChecker()//checks the lists to see if the game should continue
         {
+
+           // DiceRoller Lists = new DiceRoller();
+
+            //List<string> playerList =Lists.PlayerDice;
+
+            
+
             if(playerDice.Count == 0 && cpuDice.Count == 0)//if there is not any dice left in both of the lists
             {
                
@@ -228,6 +239,7 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public void CpuTurn()
         {
+            //I will use switch case for this
 
 
             DiceRoller dice = new DiceRoller();
@@ -318,6 +330,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
 
         }//the whole loopable cpu turn
+
+       
 
         public void PlayerTurn()
         {
@@ -508,10 +522,6 @@ namespace Baray_Bolat_DiceGame.Scripts
                 Console.WriteLine("###############################################################################################");
             }
         }
-            
-
-
-
         
         internal void ScoreCheck()//checks the score
         {
@@ -538,6 +548,13 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             GameChecker();//checks if the game is still on
 
+        }
+
+        public void ClearScreen()
+        {
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
         }
 
         public void Start()
@@ -677,9 +694,10 @@ namespace Baray_Bolat_DiceGame.Scripts
                         Console.WriteLine("Please write 'north, south, east, west'. ");
                         break;
 
-
+                        
 
                 }
+               // ClearScreen();
 
             }
 
