@@ -12,6 +12,21 @@ namespace Baray_Bolat_DiceGame.Scripts
         public int Score = 0;
         public bool IsPlayer;
 
+
+        List<Items> inventory = new List<Items>();
+
+        public void AddItems(string itemName, int amount)
+        {
+           // inventory.Add(new Items(itemName, amount));
+        }
+
+       // public void RemoveItems(Items item)
+       // {
+
+       // }
+
+
+
         public void Askname()
         {
             string asknameMessage = "What is your name?";
@@ -28,13 +43,13 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         public void SetName()
         {
-            PlayerName = "cpu";
+            PlayerName = "Kelk the Horrible";
             IsPlayer = false;
         }
 
-        public void Playerone()
-        {
+     // public void Playerone()
+     // {
            
-        }
+     // }
     }
 }
