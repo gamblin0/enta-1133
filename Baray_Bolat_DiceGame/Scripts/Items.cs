@@ -81,7 +81,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Dagger()
             {
-                
+                string dagger = null;
+                ItemName = dagger;
             }
         }
 
@@ -91,7 +92,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Hatchet()
             {
-
+                string hatchet = null;
+                ItemName = hatchet;
             }
 
             public override void OnFound()
@@ -107,7 +109,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Axe()
             {
-
+                string axe = null;
+                ItemName = axe;
             }
         }
 
@@ -116,8 +119,9 @@ namespace Baray_Bolat_DiceGame.Scripts
             //will be d20 damage
 
             public Baretta() 
-            { 
-            
+            {
+                string baretta = null;
+                ItemName = baretta;
             }
         }
 
@@ -127,7 +131,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public GOLD()
             {
-
+                string gold = null;
+                ItemName = gold;
             }
 
             public override void OnFound()
@@ -154,7 +159,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public DonerKebap()
             {
-
+                string doner = null;
+                ItemName = doner;
             }
 
             public override void OnFound()

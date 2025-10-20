@@ -102,9 +102,24 @@ namespace Baray_Bolat_DiceGame.Scripts
             {
               switch(foundLoot)
                 {
-                    //case 0:
-                       // playerInventory.AddItems(possibleItems.Hatchet);
-                       // break;
+                    case 0:
+                        foundLoot= new Items.Dagger();
+                        break;
+                    case 1:
+                        foundLoot = new Items.Hatchet();
+                        break;
+                    case 2:
+                        foundLoot = new Items.Axe();
+                        break;
+                    case 3:
+                        foundLoot = new Items.Baretta();
+                        break;
+                    case 4:
+                        foundLoot = new Items.GOLD();
+                        break;
+                    case 5:
+                        foundLoot = new Items.DonerKebap();
+                        break;
 
                 }
 
