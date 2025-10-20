@@ -100,36 +100,28 @@ namespace Baray_Bolat_DiceGame.Scripts
             }
             if (searchornot == 1)
             {
-              switch(foundLoot)
+                Items lootItem = foundLoot switch
                 {
-                    case 0:
-                        foundLoot= new Items.Dagger();
-                        break;
-                    case 1:
-                        foundLoot = new Items.Hatchet();
-                        break;
-                    case 2:
-                        foundLoot = new Items.Axe();
-                        break;
-                    case 3:
-                        foundLoot = new Items.Baretta();
-                        break;
-                    case 4:
-                        foundLoot = new Items.GOLD();
-                        break;
-                    case 5:
-                        foundLoot = new Items.DonerKebap();
-                        break;
+                    0 => new Items.Dagger(),
+                    1 => new Items.Hatchet(),
+                    2 => new Items.Axe(),
+                    3 => new Items.Baretta(),
+                    4 => new Items.DonerKebap(),
+                    5 => new Items.GOLD(),
 
-                }
+                };
+                player.AddItems(lootItem, 1);
+                Console.WriteLine($" You found {lootItem.ItemName} !");
+
+            }
 
                     
                        
                     
-            }
+        }
                         
             
-        }
+        
 
         public virtual void OnRoomExit()
         {

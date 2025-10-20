@@ -81,8 +81,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Dagger()
             {
-                string dagger = null;
-                ItemName = dagger;
+                
+                ItemName = "Dagger";
             }
         }
 
@@ -92,8 +92,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Hatchet()
             {
-                string hatchet = null;
-                ItemName = hatchet;
+               
+                ItemName = "Hatchet";
             }
 
             public override void OnFound()
@@ -109,8 +109,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Axe()
             {
-                string axe = null;
-                ItemName = axe;
+               
+                ItemName = "Axe";
             }
         }
 
@@ -120,8 +120,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Baretta() 
             {
-                string baretta = null;
-                ItemName = baretta;
+               
+                ItemName = "Baretta";
             }
         }
 
@@ -131,8 +131,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public GOLD()
             {
-                string gold = null;
-                ItemName = gold;
+               
+                ItemName = "GOLD";
             }
 
             public override void OnFound()
@@ -159,8 +159,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public DonerKebap()
             {
-                string doner = null;
-                ItemName = doner;
+               
+                ItemName = "Doner";
             }
 
             public override void OnFound()
