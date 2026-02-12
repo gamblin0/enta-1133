@@ -367,7 +367,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(8);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
+                        Console.WriteLine($"You attacked with your hatchet and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
@@ -385,7 +385,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(12);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
+                        Console.WriteLine($"You attacked with your axe and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
@@ -404,7 +404,7 @@ namespace Baray_Bolat_DiceGame.Scripts
                         playerDice.Remove(20);//removes rolled dice
 
                         Console.WriteLine("");
-                        Console.WriteLine($"You attacked with your dagger and dealt {playerOutcome} damage!");
+                        Console.WriteLine($"You attacked with your baretta and dealt {playerOutcome} damage!");
                         Console.WriteLine("");
                     }
                     else
@@ -554,6 +554,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             Room[,] dungeon = new Room[3, 3]; //generates the rooms
             int roomNumber = 0; //sets the starting room
             Random random = new Random();
+            Player player = new Player();
 
 
 
@@ -678,8 +679,8 @@ namespace Baray_Bolat_DiceGame.Scripts
                         break;
 
                     case "search":
-                        //current.OnRoomSearched();
-                        Console.WriteLine("Can't make this wokr right now");
+                        current.OnRoomSearched(player);
+                        
                         break;
                     default:
                         Console.WriteLine("Please write 'north, south, east, west'. ");

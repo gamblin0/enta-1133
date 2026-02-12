@@ -82,6 +82,7 @@ namespace Baray_Bolat_DiceGame.Scripts
             public Dagger()
             {
                 
+                ItemName = "Dagger";
             }
         }
 
@@ -91,7 +92,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Hatchet()
             {
-
+               
+                ItemName = "Hatchet";
             }
 
             public override void OnFound()
@@ -107,7 +109,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public Axe()
             {
-
+               
+                ItemName = "Axe";
             }
         }
 
@@ -116,8 +119,9 @@ namespace Baray_Bolat_DiceGame.Scripts
             //will be d20 damage
 
             public Baretta() 
-            { 
-            
+            {
+               
+                ItemName = "Baretta";
             }
         }
 
@@ -127,7 +131,8 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public GOLD()
             {
-
+               
+                ItemName = "GOLD";
             }
 
             public override void OnFound()
@@ -154,13 +159,14 @@ namespace Baray_Bolat_DiceGame.Scripts
 
             public DonerKebap()
             {
-
+               
+                ItemName = "Doner";
             }
 
             public override void OnFound()
             {
                 Console.WriteLine("You found a juicy and delicious Doner Kebap!");
-                // will say "+" (random number for item count) Doner (this random number range will be lower than random gold range)
+                // will say "+" (random number for item count) Doner (this random number range will be lower than random gold range.)
 
                 
             }

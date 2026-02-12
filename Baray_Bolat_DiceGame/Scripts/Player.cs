@@ -15,9 +15,10 @@ namespace Baray_Bolat_DiceGame.Scripts
 
         List<Items> inventory = new List<Items>();
 
-        public void AddItems(string itemName, int amount)
+        public void AddItems(Items itemName, int amount)
         {
            // inventory.Add(new Items(itemName, amount));
+           
         }
 
        // public void RemoveItems(Items item)
